@@ -39,22 +39,31 @@ const main = async () => {
                 break;
 
             case "post":
-                // Validamos que se hayan ingresado los tres argumentos necesarios
-                if (!args[0] || !args[1] || !args[2]) {
-                    console.log("Faltan datos. Uso correcto: POST products :title :price :category");
-                    break;
-                }
-                // Armamos el objeto con los datos recibidos por terminal.
-                // price se mantiene como string porque así lo espera la API.
-                const product = { title: args[0], price: args[1], category: args[2] };
-                const r3 = await fetch("https://fakestoreapi.com/products", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify(product)
-                });
-                const d3 = await r3.json();
-                console.log(d3);
+            // Validamos que se hayan ingresado al menos tres argumentos:
+            // title, price y category. Sin estos datos no podemos crear el producto.
+            if (args.length < 3) {
+                console.log("Faltan datos. Uso correcto: POST products :title :price :category");
                 break;
+            }
+            // Extraemos categoría y precio de atrás para adelante usando pop(),
+            // que elimina y devuelve el último elemento del array.
+            // Esta estrategia permite que el título tenga múltiples palabras
+            // sin romper el código. Por ejemplo: "Remera Negra de Algodón 300 remeras"
+            // sería tomado como args = ["Remera", "Negra", "de", "Algodón", "300", "remeras"]
+            const category = args.pop(); // último elemento: categoría (ej: "remeras")
+            const price = args.pop();    // nuevo último elemento: precio (ej: "300")
+            // Todo lo que quedó en args es el título. Lo unimos con espacios.
+            const title = args.join(" "); // (ej: "Remera Negra de Algodón")
+            // Armamos el objeto con los datos extraídos
+            const product = { title: title, price: price, category: category };
+            const r3 = await fetch("https://fakestoreapi.com/products", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(product)
+            });
+            const d3 = await r3.json();
+            console.log(d3);
+            break;
 
             case "delete":
                 // Validamos que se haya ingresado un ID antes de intentar eliminar
