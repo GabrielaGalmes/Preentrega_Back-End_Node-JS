@@ -24,6 +24,10 @@ npm run start GET products/:id
 
 npm run start POST products :title :price :category
 
+El título puede contener múltiples palabras. El precio y la categoría siempre deben ser la última y anteúltima palabra respectivamente.
+
+Ejemplo: npm run start POST products Remera Negra de Algodón 300 remeras
+
 ### Eliminar un producto
 
 npm run start DELETE products/:id
