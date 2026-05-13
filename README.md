@@ -1,6 +1,6 @@
 # Preentrega Node.js - Talento Tech
 
-Herramienta de terminal para gestionar productos de una tienda en línea usando la API FakeStore.
+Herramienta de línea de comandos (CLI) desarrollada en Node.js que permite realizar peticiones HTTP a la FakeStore API. La gestión de los productos de una tienda en línea, se efectúa ejecutando comandos directamente desde la terminal.
 
 ## Requisitos
 
