@@ -1,4 +1,4 @@
-# Preentrega Node.js - Talento Tech
+# Preentrega Back-End/Node-JS 
 
 Herramienta de línea de comandos (CLI) desarrollada en Node.js que permite realizar peticiones HTTP a la FakeStore API. La gestión de los productos de una tienda en línea, se efectúa ejecutando comandos directamente desde la terminal.
 
